@@ -18,6 +18,7 @@ class GUI:
     def __init__(self):
        # Create main window
        self.main_window = tk.Tk()
+       self.main_window.title("Miles Per Gallon Calculator")
 
        # Call the other init functions
        self.__setup_entryframe1()
@@ -50,7 +51,7 @@ class GUI:
         
         # Pack
         self.bottomlabel.pack(side="left")
-        self.entrybox2.pack(side="right")
+        self.entrybox2.pack(side="right")        
         self.entryframe2.pack()
 
     def __setup_buttonframe(self):

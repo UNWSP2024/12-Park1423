@@ -18,6 +18,7 @@ class GUI:
     def __init__(self):
        # Create main window
        self.main_window = tk.Tk()
+       self.main_window.title("Joe's Automotive Repair Shop")
 
        # Call the other init functions
        self.__setup_labelframe()
@@ -28,20 +29,18 @@ class GUI:
        tk.mainloop()
 
     def __setup_labelframe(self):
-        # Create the top entry frame
+        # Create the top label frame
         self.entryframe1 = tk.Frame(self.main_window)
 
-        # Create the top label and entry box
-        self.toplabel = tk.Label(self.entryframe1, text="Enter how many gallons of gas your tank holds: ")
-        self.entrybox1 = tk.Entry(self.entryframe1)
-        
+        # Create the label
+        self.toplabel = tk.Label(self.entryframe1, text="Select the options you want:")
+    
         # Pack
-        self.toplabel.pack(side="left")
-        self.entrybox1.pack(side="right")
+        self.toplabel.pack(side="top")
         self.entryframe1.pack()
 
     def __setup_checkframe(self):
-        # Create the bottom entry frame
+        # Create the checkbox frame
         self.checkboxframe = tk.Frame(self.main_window)
 
         # Create variables
@@ -54,13 +53,13 @@ class GUI:
         self.tirerotationcheckboxvariable = tk.IntVar()
 
         # Create the checkboxes
-        self.oilchangecheckbox = tk.Checkbutton(self.checkboxframe,text="Oil Change")
-        self.lubejobcheckbox = tk.Checkbutton(self.checkboxframe,text="Lube Job")
-        self.radiatorflushcheckbox = tk.Checkbutton(self.checkboxframe,text="Radiator Flush")
-        self.transmissionfluidcheckbox = tk.Checkbutton(self.checkboxframe,text="Transmission Fluid")
-        self.inspectioncheckbox = tk.Checkbutton(self.checkboxframe,text="Inspection")
-        self.mufflerreplacementcheckbox = tk.Checkbutton(self.checkboxframe,text="Muffler replacement")
-        self.tirerotationcheckbox = tk.Checkbutton(self.checkboxframe,text="Tire Rotation",)
+        self.oilchangecheckbox =          tk.Checkbutton(self.checkboxframe,text="Oil Change | $30",          variable=self.oilchangecheckboxvariable)
+        self.lubejobcheckbox =            tk.Checkbutton(self.checkboxframe,text="Lube Job | $20",            variable=self.lubejobcheckboxvariable)
+        self.radiatorflushcheckbox =      tk.Checkbutton(self.checkboxframe,text="Radiator Flush | $40",      variable=self.radiatorflushcheckboxvariable)
+        self.transmissionfluidcheckbox =  tk.Checkbutton(self.checkboxframe,text="Transmission Fluid | $100",  variable=self.transmissionfluidcheckboxvariable)
+        self.inspectioncheckbox =         tk.Checkbutton(self.checkboxframe,text="Inspection | $35",          variable=self.inspectioncheckboxvariable)
+        self.mufflerreplacementcheckbox = tk.Checkbutton(self.checkboxframe,text="Muffler replacement | $200", variable=self.mufflerreplacementcheckboxvariable)
+        self.tirerotationcheckbox =       tk.Checkbutton(self.checkboxframe,text="Tire Rotation | $20",       variable=self.tirerotationcheckboxvariable)
 
         # Pack
         self.oilchangecheckbox.pack()
@@ -86,17 +85,19 @@ class GUI:
         self.bottomframe.pack()
 
     def calculate_total(self):
-        
+        # init
         total = 0
 
-        total += int(self.oilchangecheckboxvariable) * 20
-        total += int(self.lubejobcheckboxvariable) * 20
-        total += int(self.radiatorflushcheckboxvariable) * 20
-        total += int(self.transmissionfluidcheckboxvariable) * 20
-        total += int(self.inspectioncheckboxvariable) * 20
-        total += int(self.mufflerreplacementcheckboxvariable) * 20
-        total += int(self.tirerotationcheckboxvariable) * 20
+        # If the button is checked, its 1, otherwise, its 0. So 30*0 = +0, but 30*1 = +30
+        total += self.oilchangecheckboxvariable.get()          * 30
+        total += self.lubejobcheckboxvariable.get()            * 20
+        total += self.radiatorflushcheckboxvariable.get()      * 40
+        total += self.transmissionfluidcheckboxvariable.get()  * 100
+        total += self.inspectioncheckboxvariable.get()         * 35
+        total += self.mufflerreplacementcheckboxvariable.get() * 200
+        total += self.tirerotationcheckboxvariable.get()       * 20
 
+        # Display total
         messagebox.showinfo("Total",f"Your total is ${total}")
        
         
