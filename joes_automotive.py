@@ -1,9 +1,9 @@
 ##
-# --MPG Calculator--
+# --Joe's Automotive Shop Calculator--
 # By Parker Jolly
 # 11/19/2025
-# Description: A program to calculate Miles Per Gallon using tkinter
-# Notes: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+# Description: A program to calculate costs for Joe's repair shop
+# Notes: None
 ##
 
 import tkinter as tk
